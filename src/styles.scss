@@ -1,0 +1,110 @@
+/* You can add global styles to this file, and also import other style files */
+section#shadow-host-companion {
+    display: none;
+}/* Container for the portfolio images */
+.portfolio-item img {
+  width: 100%; /* Ensures the image takes up the full width of its parent container */
+  height: 200px; /* Set a fixed height for uniformity */
+  object-fit: cover; /* Ensures the image covers the entire container without distortion */
+  border-radius: 10px; /* Optional: Adds rounded corners to the images */
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .portfolio-item img {
+    height: 150px; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio-item img {
+    height: 120px; /* Further adjust the height for mobile screens */
+  }
+}
+/* General navbar styling */
+#navbar ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+#navbar ul li {
+  margin-right: 20px;
+}
+
+#navbar ul li a {
+  text-decoration: none;
+  padding: 8px 12px;
+  color: #000;
+}
+
+#navbar ul li a.active {
+  color: #007bff; /* Active link color */
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  #navbar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 9999;
+  }
+
+  #navbar.active {
+    display: block;
+  }
+
+  #navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #navbar ul li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .bi-list {
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+    display: block;
+  }
+}
+
+/* For larger screens (desktop view) */
+@media (min-width: 769px) {
+  .bi-list {
+    display: none;
+  }
+
+  #navbar {
+    display: flex;
+  }
+}
+  
+.owl-carousel {
+    display: flex; /* Flex display for carousel items */
+    justify-content: center; /* Center the items */
+  }
+  
+  .carousel-img {
+    width: 100%; /* Full width of the carousel item */
+    height: 300px; /* Fixed height to ensure uniform size */
+    object-fit: cover; /* Ensures the image covers the space */
+    padding: 10px; /* Padding around the image */
+    border-radius: 10px; /* Optional: rounded corners */
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-img {
+      height: 200px; /* Adjust height for smaller screens */
+    }
+  }
+  
