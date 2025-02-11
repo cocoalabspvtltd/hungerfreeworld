@@ -1,0 +1,48 @@
+.bg-container {
+    background-image: url('/assets/img/portfolio/14.png'); /* Background Image */
+    background-size: cover; /* Cover the entire div */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* No repetition */
+   
+    height: 400px; /* Adjust height as needed */
+    align-items: center;
+    justify-content: center;
+}
+.bg-container1 {
+    background-image: url('/assets/img/portfolio/13.jpg'); /* Background Image */
+    background-size: cover; /* Cover the entire div */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* No repetition */
+   
+    height: 400px; /* Adjust height as needed */
+    align-items: center;
+    justify-content: center;
+}
+ul {
+    list-style: none; /* Removes default bullet points */
+    padding: 0;
+}
+
+ul li {
+    position: relative;
+    padding-left: 30px; /* Space for custom icon */
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.6;
+}
+
+#team ul li::before {
+    content: "✔"; /* Custom checkmark icon */
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 18px;
+    color: #28a745; /* Green color for checkmark */
+    font-weight: bold;
+}
+
+ul li b {
+    color: #0f0f0f; /* Highlight the bold text with blue */
+}
