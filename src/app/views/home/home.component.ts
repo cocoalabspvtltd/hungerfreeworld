@@ -3,19 +3,22 @@ import { ApiService } from '../../service/api.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+ 
+  
 })
 export class HomeComponent {
   msg: any;
   data:  any; 
  
-  constructor(private router: Router,private ApiService :ApiService,private http: HttpClient,fb: FormBuilder,private route:Router) {
+  constructor(private router: Router,private ApiService :ApiService,private http: HttpClient,private route:Router) {
     
   }
   conatctForm                   = new FormGroup({
