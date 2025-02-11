@@ -1,33 +1,34 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
-
+import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
- 
-  
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, CarouselModule],
+  providers: [ApiService] 
 })
 export class HomeComponent {
   msg: any;
-  data:  any; 
- 
-  constructor(private router: Router,private ApiService :ApiService,private http: HttpClient,private route:Router) {
-    
+  data: any;
+  conatctForm: FormGroup;
+
+  constructor(private router: Router, private apiService: ApiService, private http: HttpClient) {
+    this.conatctForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      name: new FormControl('', [Validators.required]),
+      Subject: new FormControl('', [Validators.required]),
+      Message: new FormControl('', [Validators.required])
+    });
   }
-  conatctForm                   = new FormGroup({
-    email                       : new FormControl(),
-    name                        : new FormControl(),
-    Subject                     : new FormControl(),
-    Message                     : new FormControl(),
-   
-  })
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -36,44 +37,42 @@ export class HomeComponent {
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
-    autoplay: true, // Enable autoplay
-    autoplayTimeout: 3000, // Time between slides (in milliseconds)
-    autoplayHoverPause: true, // Pause on hover
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
     responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
+      0: { items: 1 },
+      400: { items: 2 },
+      740: { items: 3 },
+      940: { items: 4 }
     },
     nav: true
   };
-  
-  contact()
-  {
-   this.data={name:this.conatctForm.value.name,email:this.conatctForm.value.email,message:this.conatctForm.value.Message,subject:this.conatctForm.value.Subject}
-   console.log(this.data);
-    this.ApiService.Contact(this.data).subscribe(
-      (res:any) => {
-      console.log('contact',res)
-      if(res.success==true){
-        this.conatctForm.reset();
-       this.msg=res.message;
-      }else{
-        console.log('error')
-      
+
+  contact() {
+    this.data = {
+      name: this.conatctForm.value.name,
+      email: this.conatctForm.value.email,
+      message: this.conatctForm.value.Message,
+      subject: this.conatctForm.value.Subject
+    };
+
+    console.log(this.data);
+
+    this.apiService.Contact(this.data).subscribe({
+      next: (res: any) => {
+        console.log('contact', res);
+        if (res.success) {
+          this.conatctForm.reset();
+          this.msg = res.message;
+        } else {
+          console.log('error');
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.msg = error.error.error;
+      }
+    });
   }
-  })
-  ,(error: any)=>{
-    console.log(error)
-    this.msg=error.error.error;
-  }
-   }
 }
